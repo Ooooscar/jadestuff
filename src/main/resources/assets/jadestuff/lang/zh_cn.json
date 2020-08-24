@@ -1,0 +1,31 @@
+{
+	"itemGroup.jadestuff_materials": "玉魂·材料",
+	"itemGroup.jadestuff_blocks": "玉魂·方块",
+	"itemGroup.jadestuff_tools": "玉魂·工具",
+	"itemGroup.jadestuff_weapons": "玉魂·武器",
+
+	"item.jadestuff.ender_jade": "末地玉",
+	"item.jadestuff.pure_jade": "宝玉",
+
+	"block.jadestuff.jadestone": "玉岩",
+	"block.jadestuff.jadestone_dark": "深色玉岩",
+	"block.jadestuff.jadestone_bricks": "玉岩砖",
+	"block.jadestuff.ender_jade_ore": "末地玉矿石",
+
+	"item.jadestuff.staff_red": "火红法杖",
+	"item.jadestuff.staff_yellow": "澄黄法杖",
+	"item.jadestuff.staff_green": "碧绿法杖",
+	"item.jadestuff.staff_blue": "晶蓝法杖",
+	"item.jadestuff.staff_pink": "幻粉法杖",
+	"item.jadestuff.staff_white": "苍白法杖",
+	"item.jadestuff.strange_snowball": "奇怪的雪球",
+	"item.jadestuff.ko": "究极大杀器",
+
+	"effect.jadestuff.chilled": "冰霜",
+
+	"subtitles.jadestuff.effect.freeze": "目标:受到冰霜效果",
+
+
+	"advancements.era_of_jade.title": "玉器时代",
+	"advancements.era_of_jade.description": "获得末地玉"
+}

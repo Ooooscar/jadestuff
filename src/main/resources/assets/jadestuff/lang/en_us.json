@@ -1,0 +1,31 @@
+{
+	"itemGroup.jadestuff_materials": "Jadestuff Materials",
+	"itemGroup.jadestuff_blocks": "Jadestuff Blocks",
+	"itemGroup.jadestuff_tools": "Jadestuff Tools",
+	"itemGroup.jadestuff_weapons": "Jadestuff Weapons",
+
+	"item.jadestuff.ender_jade": "Ender Jade",
+	"item.jadestuff.pure_jade": "Pure Jade",
+
+	"block.jadestuff.jadestone": "Jadestone",
+	"block.jadestuff.jadestone_dark": "Dark Jadestone",
+	"block.jadestuff.jadestone_bricks": "Jadestone Bricks",
+	"block.jadestuff.ender_jade_ore": "Ender Jade Ore",
+
+	"item.jadestuff.staff_red": "Red Staff",
+	"item.jadestuff.staff_yellow": "Yellow Staff",
+	"item.jadestuff.staff_green": "Green Staff",
+	"item.jadestuff.staff_blue": "Blue Staff",
+	"item.jadestuff.staff_pink": "Pink Staff",
+	"item.jadestuff.staff_white": "White Staff",
+	"item.jadestuff.strange_snowball": "Strange Snowball",
+	"item.jadestuff.ko": "K. O.",
+
+	"effect.jadestuff.chilled": "Chilled",
+
+	"subtitles.jadestuff.effect.freeze": "Target freezes",
+
+
+	"advancements.era_of_jade.title": "Era of Jade",
+	"advancements.era_of_jade.description": "Acquire Ender Jade"
+}

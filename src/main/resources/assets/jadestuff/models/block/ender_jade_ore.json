@@ -1,0 +1,6 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "jadestuff:block/ender_jade_ore"
+  }
+}

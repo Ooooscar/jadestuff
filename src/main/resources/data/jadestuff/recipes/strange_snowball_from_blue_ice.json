@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "strange_snowball",
+  "pattern": [
+    "xxx",
+    "xox",
+    "xxx"
+  ],
+  "key": {
+    "x": {
+      "item": "minecraft:snowball"
+    },
+    "o": {
+      "item": "minecraft:blue_ice"
+    }
+  },
+  "result": {
+    "item": "jadestuff:strange_snowball",
+    "count": 8
+  }
+}
