@@ -12,9 +12,11 @@ public final class ModSoundEvents {
 
     @ObjectHolder("effect.freeze")
     public static final SoundEvent EFFECT_FREEZE = Null();
+    public static final SoundEvent EFFECT_K_O = Null();
 
     private static final SoundEventRegistry[] sound_event_registries = {
         new SoundEventRegistry("effect.freeze"),
+        new SoundEventRegistry("effect.k_o"),
     };
 
     private static final int number_of_registries = sound_event_registries.length;

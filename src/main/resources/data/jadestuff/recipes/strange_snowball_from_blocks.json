@@ -11,7 +11,7 @@
       "item": "minecraft:snow_block"
     },
     "o": {
-      "item": "minecraft:ice"
+      "item": "minecraft:packed_ice"
     }
   },
   "result": {

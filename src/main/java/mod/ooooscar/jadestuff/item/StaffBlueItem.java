@@ -87,34 +87,28 @@ public class StaffBlueItem extends ShootableItem implements IVanishable {
                 }
                 ammo.shrink(1);
             }
-            /*
+
+            // TODO: Not working
             if (!playerIn.abilities.isCreativeMode) {
                 heldItem.damageItem(1, playerIn, (onBrokenIn) -> {
                     onBrokenIn.sendBreakAnimation(EquipmentSlotType.MAINHAND);
                 });
             }
-             */
-            // TODO: Not working
-            if (playerIn.abilities.isCreativeMode) {
-                return ActionResult.resultFail(heldItem);
-            } else {
-                playerIn.setActiveHand(handIn);
-                return ActionResult.resultConsume(heldItem);
-            }
 
+            playerIn.setActiveHand(handIn);
+            return ActionResult.resultConsume(heldItem);
         }
 
         return ActionResult.resultFail(heldItem);
-        // return new ActionResult<>(ActionResultType.FAIL, heldItem);
     }
 
     public boolean hitEntity(ItemStack stack, LivingEntity target, LivingEntity attacker) {
         target.playSound(ModSoundEvents.EFFECT_FREEZE, 0.5F, 2.6F + (target.world.rand.nextFloat() - target.world.rand.nextFloat()) * 0.8F);
         target.addPotionEffect(new EffectInstance(ModEffects.CHILLED, 180, 5, true, true));
         // TODO: Not Working
-        if (!(attacker instanceof PlayerEntity) || ((PlayerEntity) attacker).abilities.isCreativeMode) {
-            stack.damageItem(1, attacker, (p_220045_0_) -> {
-                p_220045_0_.sendBreakAnimation(EquipmentSlotType.MAINHAND);
+        if (attacker instanceof PlayerEntity && !((PlayerEntity) attacker).abilities.isCreativeMode) {
+            stack.damageItem(1, attacker, (onBrokenIn) -> {
+                onBrokenIn.sendBreakAnimation(EquipmentSlotType.MAINHAND);
             });
         }
         return true;

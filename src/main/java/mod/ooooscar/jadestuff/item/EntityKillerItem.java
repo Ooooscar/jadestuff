@@ -1,5 +1,6 @@
 package mod.ooooscar.jadestuff.item;
 
+import mod.ooooscar.jadestuff.init.ModSoundEvents;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.boss.dragon.EnderDragonPartEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -30,6 +31,7 @@ public class EntityKillerItem extends Item {
                 entityToKill = entity;
             }
 
+            entity.playSound(ModSoundEvents.EFFECT_K_O, 0.5F, 2.6F + (entity.world.rand.nextFloat() - entity.world.rand.nextFloat()) * 2.0F);
             entityToKill.onKillCommand();
             player.sendStatusMessage(new TranslationTextComponent("commands.kill.success.single", entityToKill.getDisplayName()), true);
         }

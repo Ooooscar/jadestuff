@@ -19,6 +19,7 @@ import net.minecraft.particles.ItemParticleData;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.Direction;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
@@ -38,7 +39,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
  *
  * @author Ooooscar
  */
-// TODO: Shot ModSnowballs do not render
+// TODO: ModSnowballEntity does not render
 public class ModSnowballEntity extends ProjectileItemEntity {
     private static float default_damage = 0;
     private static float knockbackStrength = 0;
@@ -63,14 +64,14 @@ public class ModSnowballEntity extends ProjectileItemEntity {
     }
 
     protected Item getDefaultItem() {
-        return ModItems.STRANGE_SNOWBALL;
+        return ModItems.STRANGE_SNOWBALL.getItem();
     }
 
     // TODO: Prevent spawning snowball particles at the player's head if the speed of snowball is set to a higher value
     @OnlyIn(Dist.CLIENT)
     public IParticleData makeParticle() {
         ItemStack itemstack = this.func_213882_k();
-        return (itemstack.isEmpty() ? ParticleTypes.ITEM_SNOWBALL : new ItemParticleData(ParticleTypes.ITEM, itemstack));
+        return (IParticleData) (itemstack.isEmpty() ? ParticleTypes.ITEM_SNOWBALL : new ItemParticleData(ParticleTypes.ITEM, itemstack));
     }
 
     /**
@@ -147,17 +148,21 @@ public class ModSnowballEntity extends ProjectileItemEntity {
     /**
      * Called when the ModSnowball hits a block
      */
-    // TODO: Fire on other sides of the block (i.e. not on top of the hit block)?
     // If it's a critical shot: Extinguish fire
     protected void func_230299_a_(BlockRayTraceResult result) {
         super.func_230299_a_(result);
         if (is_crit) {
-            BlockPos pos_up = result.getPos().up();
-            BlockState ibs_up = world.getBlockState(pos_up);
-            Block block_up = ibs_up.getBlock();
-            if (block_up instanceof FireBlock) {
+            BlockPos pos = result.getPos();
+            Direction direction = result.getFace();
+
+            BlockPos pos_offset = pos.offset(direction);
+            Block block_offset = this.world.getBlockState(pos_offset).getBlock();
+
+            boolean face_can_catch_fire = ((FireBlock)Blocks.FIRE).canCatchFire(this.world, pos, direction);
+
+            if (block_offset instanceof FireBlock && (face_can_catch_fire || (direction.equals(Direction.UP)))) {
                 playSound(SoundEvents.BLOCK_FIRE_EXTINGUISH, 0.5F, 2.6F + (rand.nextFloat() - rand.nextFloat()) * 0.8F);
-                this.world.removeBlock(pos_up, false);
+                this.world.removeBlock(pos_offset, false);
             }
         }
     }

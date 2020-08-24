@@ -21,9 +21,13 @@
 	"item.jadestuff.strange_snowball": "Strange Snowball",
 	"item.jadestuff.ko": "K. O.",
 
+
+	"entity.jadestuff.strange_snowball": "Strange Snowball",
+
 	"effect.jadestuff.chilled": "Chilled",
 
 	"subtitles.jadestuff.effect.freeze": "Target freezes",
+	"subtitles.jadestuff.effect.k_o": "Target exterminated",
 
 
 	"advancements.era_of_jade.title": "Era of Jade",

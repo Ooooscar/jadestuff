@@ -21,9 +21,13 @@
 	"item.jadestuff.strange_snowball": "奇怪的雪球",
 	"item.jadestuff.ko": "究极大杀器",
 
+
+	"entity.jadestuff.strange_snowball": "奇怪的雪球",
+
 	"effect.jadestuff.chilled": "冰霜",
 
 	"subtitles.jadestuff.effect.freeze": "目标:受到冰霜效果",
+	"subtitles.jadestuff.effect.k_o": "目标:被消灭",
 
 
 	"advancements.era_of_jade.title": "玉器时代",

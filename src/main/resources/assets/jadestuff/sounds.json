@@ -4,5 +4,12 @@
         "jadestuff:effect/freeze"
     ],
     "subtitle": "subtitles.jadestuff.effect.freeze"
+  },
+  "effect.k_o": {
+    "sounds": [
+        "jadestuff:effect/k_o_1",
+        "jadestuff:effect/k_o_2"
+    ],
+    "subtitle": "subtitles.jadestuff.effect.k_o"
   }
 }
