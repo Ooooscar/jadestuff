@@ -1,6 +1,6 @@
 package mod.ooooscar.jadestuff.item;
 
-import mod.ooooscar.jadestuff.entity.projectile.ModSnowballEntity;
+import mod.ooooscar.jadestuff.entity.ModSnowballEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

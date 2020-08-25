@@ -53,7 +53,7 @@ public final class ModBlocks {
         return new BlockItem.Properties().group(ModItemGroups.JADESTUFF_BLOCKS);
     }
 
-    private static class BlockRegistry {
+    private static final class BlockRegistry {
         private final Block block_to_register;
         private final BlockItem block_item_to_register;
 

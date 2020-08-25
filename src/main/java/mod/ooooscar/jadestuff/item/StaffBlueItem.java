@@ -1,6 +1,6 @@
 package mod.ooooscar.jadestuff.item;
 
-import mod.ooooscar.jadestuff.entity.projectile.ModSnowballEntity;
+import mod.ooooscar.jadestuff.entity.ModSnowballEntity;
 import mod.ooooscar.jadestuff.init.ModEffects;
 import mod.ooooscar.jadestuff.init.ModItems;
 import mod.ooooscar.jadestuff.init.ModSoundEvents;

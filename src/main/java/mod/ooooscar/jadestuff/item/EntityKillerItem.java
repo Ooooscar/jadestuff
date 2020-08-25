@@ -6,6 +6,7 @@ import net.minecraft.entity.boss.dragon.EnderDragonPartEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.text.TranslationTextComponent;
 
 /**
@@ -31,7 +32,8 @@ public class EntityKillerItem extends Item {
                 entityToKill = entity;
             }
 
-            entity.playSound(ModSoundEvents.EFFECT_K_O, 0.5F, 2.6F + (entity.world.rand.nextFloat() - entity.world.rand.nextFloat()) * 2.0F);
+            // TODO: Does not play sound at all
+            entity.world.playSound(entity.getPosX(), entity.getPosY(), entity.getPosZ(), ModSoundEvents.EFFECT_K_O, SoundCategory.NEUTRAL, 1.0F, 2.6F + (entity.world.rand.nextFloat() - entity.world.rand.nextFloat()) * 0.8F, false);
             entityToKill.onKillCommand();
             player.sendStatusMessage(new TranslationTextComponent("commands.kill.success.single", entityToKill.getDisplayName()), true);
         }

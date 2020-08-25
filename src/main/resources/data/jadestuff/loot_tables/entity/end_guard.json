@@ -19,7 +19,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "jade:ender_jade",
+          "name": "jadestuff:ender_jade",
           "weight": 1
         },
         {
