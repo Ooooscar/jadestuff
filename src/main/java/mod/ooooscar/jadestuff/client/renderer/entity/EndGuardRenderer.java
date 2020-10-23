@@ -1,5 +1,7 @@
 package mod.ooooscar.jadestuff.client.renderer.entity;
 
+import mod.ooooscar.jadestuff.Main;
+import mod.ooooscar.jadestuff.client.renderer.entity.model.EndGuardModel;
 import mod.ooooscar.jadestuff.entity.EndGuardEntity;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.MobRenderer;
@@ -10,12 +12,13 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
-public class EndGuardRenderer extends MobRenderer<EndGuardEntity, BlazeModel<EndGuardEntity>> {
-    private final ResourceLocation textureLocation;
+public class EndGuardRenderer extends MobRenderer<EndGuardEntity, EndGuardModel>
+{
+    protected static final ResourceLocation TEXTURE = new ResourceLocation(Main.MOD_ID,
+            "textures/entity/jade_guard.png");
 
-    public EndGuardRenderer(final EntityRendererManager renderManagerIn, final ResourceLocation textureLocationIn) {
-        super(renderManagerIn, new BlazeModel<>(), 0.5F);
-        this.textureLocation = textureLocationIn;
+    public EndGuardRenderer(EntityRendererManager renderManagerIn) {
+        super(renderManagerIn, new EndGuardModel(), 0.5f);
     }
 
     @Override
@@ -23,11 +26,10 @@ public class EndGuardRenderer extends MobRenderer<EndGuardEntity, BlazeModel<End
         return 15;
     }
 
-    /**
-     * Returns the location of an entity's texture.
-     */
     @Override
-    public ResourceLocation getEntityTexture(final EndGuardEntity entity) {
-        return textureLocation;
+    public ResourceLocation getEntityTexture(EndGuardEntity entity) {
+        return TEXTURE;
     }
+
+
 }

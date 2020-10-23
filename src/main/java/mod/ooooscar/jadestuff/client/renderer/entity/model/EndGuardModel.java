@@ -2,6 +2,10 @@ package mod.ooooscar.jadestuff.client.renderer.entity.model;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableList.Builder;
+import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.vertex.IVertexBuilder;
+import mod.ooooscar.jadestuff.entity.EndGuardEntity;
+import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.client.renderer.entity.model.SegmentedModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.entity.Entity;
@@ -12,7 +16,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import java.util.Arrays;
 
 @OnlyIn(Dist.CLIENT)
-public class EndGuardModel<T extends Entity> extends SegmentedModel<T> {
+public class EndGuardModel extends EntityModel<EndGuardEntity> {
    private final ModelRenderer[] blazeSticks;
    private final ModelRenderer blazeHead = new ModelRenderer(this, 0, 0);
    private final ImmutableList<ModelRenderer> field_228242_f_;
@@ -32,14 +36,8 @@ public class EndGuardModel<T extends Entity> extends SegmentedModel<T> {
       this.field_228242_f_ = builder.build();
    }
 
-   public Iterable<ModelRenderer> getParts() {
-      return this.field_228242_f_;
-   }
-
-   /**
-    * Sets this entity's model rotation angles
-    */
-   public void setRotationAngles(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+   @Override
+   public void setRotationAngles(EndGuardEntity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
       float f = ageInTicks * (float)Math.PI * -0.1F;
 
       for(int i = 0; i < 4; ++i) {
@@ -69,5 +67,14 @@ public class EndGuardModel<T extends Entity> extends SegmentedModel<T> {
 
       this.blazeHead.rotateAngleY = netHeadYaw * ((float)Math.PI / 180F);
       this.blazeHead.rotateAngleX = headPitch * ((float)Math.PI / 180F);
+   }
+
+   public Iterable<ModelRenderer> getParts() {
+      return this.field_228242_f_;
+   }
+
+   @Override
+   public void render(MatrixStack matrixStackIn, IVertexBuilder bufferIn, int packedLightIn, int packedOverlayIn, float red, float green, float blue, float alpha) {
+
    }
 }

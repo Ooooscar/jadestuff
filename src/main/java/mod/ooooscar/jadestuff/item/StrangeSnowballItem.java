@@ -1,6 +1,6 @@
 package mod.ooooscar.jadestuff.item;
 
-import mod.ooooscar.jadestuff.entity.ModSnowballEntity;
+import mod.ooooscar.jadestuff.entity.StrangeSnowballEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -13,8 +13,8 @@ import net.minecraft.util.SoundEvents;
 import net.minecraft.world.World;
 
 // TODO: Check unlocking conditions of recipes
-public class ModSnowballItem extends SnowballItem {
-    public ModSnowballItem(Item.Properties builder) {
+public class StrangeSnowballItem extends SnowballItem {
+    public StrangeSnowballItem(Item.Properties builder) {
         super(builder.maxStackSize(32));
     }
 
@@ -24,7 +24,7 @@ public class ModSnowballItem extends SnowballItem {
         // TODO: Change thrown sound
         worldIn.playSound((PlayerEntity)null, playerIn.getPosX(), playerIn.getPosY(), playerIn.getPosZ(), SoundEvents.ENTITY_SNOWBALL_THROW, SoundCategory.NEUTRAL, 0.5F, 0.4F / (random.nextFloat() * 0.4F + 0.8F));
         if (!worldIn.isRemote) {
-            ModSnowballEntity mod_snowball_entity = new ModSnowballEntity(worldIn, playerIn);
+            StrangeSnowballEntity mod_snowball_entity = new StrangeSnowballEntity(playerIn, worldIn);
             mod_snowball_entity.setDefaultDamage(0.5F);
             mod_snowball_entity.setKnockbackStrength(0.0F);
             mod_snowball_entity.setItem(itemstack);
