@@ -1,6 +1,6 @@
 package mod.ooooscar.jadestuff.item;
 
-import mod.ooooscar.jadestuff.init.ModSoundEvents;
+import mod.ooooscar.jadestuff.init.SoundInit;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.boss.dragon.EnderDragonPartEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -33,7 +33,7 @@ public class EntityKillerItem extends Item {
             }
 
             // TODO: Does not play sound at all
-            entity.world.playSound(entity.getPosX(), entity.getPosY(), entity.getPosZ(), ModSoundEvents.EFFECT_K_O, SoundCategory.NEUTRAL, 1.0F, 2.6F + (entity.world.rand.nextFloat() - entity.world.rand.nextFloat()) * 0.8F, false);
+            entity.world.playSound(entity.getPosX(), entity.getPosY(), entity.getPosZ(), SoundInit.KO.get(), SoundCategory.NEUTRAL, 1.0F, 2.6F + (entity.world.rand.nextFloat() - entity.world.rand.nextFloat()) * 0.8F, false);
             entityToKill.onKillCommand();
             player.sendStatusMessage(new TranslationTextComponent("commands.kill.success.single", entityToKill.getDisplayName()), true);
         }

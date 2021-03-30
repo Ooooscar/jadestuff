@@ -1,9 +1,9 @@
 package mod.ooooscar.jadestuff.entity;
 
-import mod.ooooscar.jadestuff.init.ModEffects;
-import mod.ooooscar.jadestuff.init.ModEntities;
-import mod.ooooscar.jadestuff.init.ModItems;
-import mod.ooooscar.jadestuff.init.ModSoundEvents;
+import mod.ooooscar.jadestuff.init.EffectsInit;
+import mod.ooooscar.jadestuff.init.EntityInit;
+import mod.ooooscar.jadestuff.init.ItemInit;
+import mod.ooooscar.jadestuff.init.SoundInit;
 import net.minecraft.block.*;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -14,6 +14,7 @@ import net.minecraft.entity.projectile.ProjectileItemEntity;
 import net.minecraft.entity.projectile.SnowballEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.network.IPacket;
 import net.minecraft.particles.IParticleData;
 import net.minecraft.particles.ItemParticleData;
 import net.minecraft.particles.ParticleTypes;
@@ -29,30 +30,33 @@ import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.fml.network.NetworkHooks;
 
 /**
  * Modified {@link SnowballEntity} which stores a default damage value,
  * deals extra damage to fire based mobs ({@link MagmaCubeEntity} and {@link BlazeEntity}),
  * deals reduced damage to entities in water,
  * extinguishes fire,
- * and has a chance to inflict the {@link ModEffects#CHILLED} debuff.
+ * and has a chance to inflict the Chilled debuff.
  *
  * @author Ooooscar
  */
 // TODO: ModSnowballEntity does not render
-public class ModSnowballEntity extends ProjectileItemEntity {
+public class StrangeSnowballEntity extends ProjectileItemEntity {
     private static float default_damage = 0;
     private static float knockbackStrength = 0;
     private static boolean is_crit = false;
 
-    public ModSnowballEntity(EntityType<? extends ModSnowballEntity> entityTypeIn, World worldIn) {
-        super(entityTypeIn, worldIn);
+    public StrangeSnowballEntity(EntityType<StrangeSnowballEntity> type, World world) {
+        super(type, world);
     }
-    public ModSnowballEntity(World worldIn, LivingEntity throwerIn) {
-        super(ModEntities.STRANGE_SNOWBALL, throwerIn, worldIn);
+
+    public StrangeSnowballEntity(LivingEntity entity, World world) {
+        super(EntityInit.STRANGE_SNOWBALL.get(), entity, world);
     }
-    public ModSnowballEntity(World worldIn, double x, double y, double z) {
-        super(ModEntities.STRANGE_SNOWBALL, x, y, z, worldIn);
+
+    public StrangeSnowballEntity(double x, double y, double z, World world) {
+        super(EntityInit.STRANGE_SNOWBALL.get(), x, y, z, world);
     }
 
     public void setDefaultDamage(float defaultDamageIn) {
@@ -63,8 +67,25 @@ public class ModSnowballEntity extends ProjectileItemEntity {
         knockbackStrength = knockbackStrengthIn;
     }
 
+    /*
+     * This gets the default item that the rock will be thrown by.
+     * An example would be the snowball throwing the snowball.
+     * If you choose to use a block for this, then you will need to
+     * add .asItem() onto the end to ensure you are gettin the block item
+     */
+    @Override
     protected Item getDefaultItem() {
-        return ModItems.STRANGE_SNOWBALL;
+        return ItemInit.STRANGE_SNOWBALL.get().asItem();
+    }
+
+    /*
+     * This is a method used to spawn the actual entity in the world
+     * It uses the NetworkHooks class which is a common class used.
+     * It then gets the entity which is this.
+     */
+    @Override
+    public IPacket<?> createSpawnPacket() {
+        return NetworkHooks.getEntitySpawningPacket(this);
     }
 
     // TODO: Prevent spawning snowball particles at the player's head if the speed of snowball is set to a higher value
@@ -138,8 +159,8 @@ public class ModSnowballEntity extends ProjectileItemEntity {
             }
             // If it's a critical shot: apply freezing effect to the entity
             if (is_crit) {
-                living_entity_hit.playSound(ModSoundEvents.EFFECT_FREEZE, 0.5F, 2.6F + (rand.nextFloat() - rand.nextFloat()) * 0.8F);
-                living_entity_hit.addPotionEffect(new EffectInstance(ModEffects.CHILLED, (int)(120 * dmg), 5, true, true));
+                living_entity_hit.playSound(SoundInit.FREEZE.get(), 0.5F, 2.6F + (rand.nextFloat() - rand.nextFloat()) * 0.8F);
+                living_entity_hit.addPotionEffect(new EffectInstance(EffectsInit.CHILLED.get(), (int)(120 * dmg), 5, true, true));
             }
         }
 

@@ -1,9 +1,9 @@
 package mod.ooooscar.jadestuff.item;
 
-import mod.ooooscar.jadestuff.entity.ModSnowballEntity;
-import mod.ooooscar.jadestuff.init.ModEffects;
-import mod.ooooscar.jadestuff.init.ModItems;
-import mod.ooooscar.jadestuff.init.ModSoundEvents;
+import mod.ooooscar.jadestuff.entity.StrangeSnowballEntity;
+import mod.ooooscar.jadestuff.init.EffectsInit;
+import mod.ooooscar.jadestuff.init.ItemInit;
+import mod.ooooscar.jadestuff.init.SoundInit;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.enchantment.IVanishable;
@@ -53,7 +53,7 @@ public class StaffBlueItem extends ShootableItem implements IVanishable {
 
     @Override
     public Predicate<ItemStack> getInventoryAmmoPredicate() {
-        return stack -> stack.getItem() == ModItems.STRANGE_SNOWBALL;
+        return stack -> stack.getItem() == ItemInit.STRANGE_SNOWBALL.get();
     }
 
     @Override
@@ -74,7 +74,7 @@ public class StaffBlueItem extends ShootableItem implements IVanishable {
             worldIn.playSound(null, playerIn.getPosX(), playerIn.getPosY(), playerIn.getPosZ(), SoundEvents.ENTITY_SNOWBALL_THROW, SoundCategory.NEUTRAL, 0.5f, 0.4f / (random.nextFloat() * 0.4f + 0.8f));
 
             if (!worldIn.isRemote) {
-                final ModSnowballEntity mod_snowball_entity = new ModSnowballEntity(worldIn, playerIn);
+                final StrangeSnowballEntity mod_snowball_entity = new StrangeSnowballEntity(playerIn, worldIn);
                 mod_snowball_entity.setDefaultDamage(1.0F);
                 mod_snowball_entity.setKnockbackStrength(1.5F);
                 mod_snowball_entity.func_234612_a_(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 2.0F, 0.5F);
@@ -103,8 +103,8 @@ public class StaffBlueItem extends ShootableItem implements IVanishable {
     }
 
     public boolean hitEntity(ItemStack stack, LivingEntity target, LivingEntity attacker) {
-        target.playSound(ModSoundEvents.EFFECT_FREEZE, 0.5F, 2.6F + (target.world.rand.nextFloat() - target.world.rand.nextFloat()) * 0.8F);
-        target.addPotionEffect(new EffectInstance(ModEffects.CHILLED, 180, 5, true, true));
+        target.playSound(SoundInit.FREEZE.get(), 0.5F, 2.6F + (target.world.rand.nextFloat() - target.world.rand.nextFloat()) * 0.8F);
+        target.addPotionEffect(new EffectInstance(EffectsInit.CHILLED.get(), 180, 5, true, true));
         // TODO: Not Working
         if (attacker instanceof PlayerEntity && !((PlayerEntity) attacker).abilities.isCreativeMode) {
             stack.damageItem(1, attacker, (onBrokenIn) -> {

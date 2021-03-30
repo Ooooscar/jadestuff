@@ -1,6 +1,6 @@
 package mod.ooooscar.jadestuff.entity;
 
-import mod.ooooscar.jadestuff.init.ModEntities;
+import mod.ooooscar.jadestuff.init.EntityInit;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.attributes.Attributes;
@@ -64,7 +64,7 @@ public class EndGuardEntity extends MonsterEntity {
 
     @Override
     public EntityType<?> getType() {
-        return ModEntities.END_GUARD;
+        return EntityInit.END_GUARD.get();
     }
 
     public float getBrightness() {
